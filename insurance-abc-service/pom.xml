@@ -10,27 +10,15 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>insurance-discovery-server</artifactId>
+	<artifactId>insurance-abc-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>insurance-discovery-server</name>
-	<description>Insurance Discovery Server</description>
+	<name>insurance-abc-service</name>
+	<description>ABC Insurance Service</description>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 	</dependencies>
 

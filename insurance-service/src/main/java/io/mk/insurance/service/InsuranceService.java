@@ -3,11 +3,9 @@ package io.mk.insurance.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-
-import io.mk.insurance.feignclient.ABCInsuranceClient;
-import io.mk.insurance.feignclient.XYZInsuranceClient;
+import io.mk.insurance.model.InsuranceDetail;
 import io.mk.insurance.model.Insurer;
 
 /**
@@ -19,23 +17,21 @@ import io.mk.insurance.model.Insurer;
 public class InsuranceService {
 
 	@Autowired
-	private ABCInsuranceClient abcInsuranceClient;
+	private RestTemplate restTemplate;
 
-	@Autowired
-	private XYZInsuranceClient xyzInsuranceClient;
+	public InsuranceDetail getInsuranceDetail(String brand, String model) {
+		InsuranceDetail insuranceDetail = new InsuranceDetail();
 
-	@HystrixCommand(fallbackMethod = "getInsuranceDetailFallback", commandKey = "getABCInsuranceDetailFromService")
-	public Insurer getABCInsuranceDetail(String brand, String model) {
-		return abcInsuranceClient.getInsuranceDetail(brand, model);
-	}
+		// Calling microservice 1
+		String abcInsUrl = "http://desktop-ms1g9rh:8091/abcinsurance/detail/" + brand + "/" + model;
+		Insurer insResp1 = restTemplate.getForObject(abcInsUrl, Insurer.class);
+		insuranceDetail.getInsurers().add(insResp1);
 
-	@HystrixCommand(fallbackMethod = "getInsuranceDetailFallback", commandKey = "getXYZInsuranceDetailFromService")
-	public Insurer getXYZInsuranceDetail(String brand, String model) {
-		return xyzInsuranceClient.getInsuranceDetail(brand, model);
-	}
+		// Calling microservice 2
+		String xyzInsUrl = "http://desktop-ms1g9rh:8092/xyzinsurance/detail/" + brand + "/" + model;
+		Insurer insResp2 = restTemplate.getForObject(xyzInsUrl, Insurer.class);
+		insuranceDetail.getInsurers().add(insResp2);
 
-	// Histrix fallback method, if any exception arrives
-	public Insurer getInsuranceDetailFallback(String brand, String model) {
-		return null;
+		return insuranceDetail;
 	}
 }

@@ -22,11 +22,6 @@ public class InsuranceController {
 
 	@RequestMapping("detail/{brand}/{model}")
 	public InsuranceDetail getInsuranceDetail(@PathVariable String brand, @PathVariable String model) {
-
-		InsuranceDetail insuranceDetail = new InsuranceDetail();
-		insuranceDetail.getInsurers().add(insuranceService.getABCInsuranceDetail(brand, model));
-		insuranceDetail.getInsurers().add(insuranceService.getXYZInsuranceDetail(brand, model));
-
-		return insuranceDetail;
+		return insuranceService.getInsuranceDetail(brand, model);
 	}
 }
