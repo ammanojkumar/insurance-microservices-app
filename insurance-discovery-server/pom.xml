@@ -5,7 +5,7 @@
 
 	<parent>
 		<groupId>io.mk</groupId>
-		<artifactId>spring-boot-microservices-feign-hystrix</artifactId>
+		<artifactId>springboot-microservices-feign-hystrix</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 

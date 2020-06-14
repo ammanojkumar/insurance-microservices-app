@@ -2,9 +2,10 @@
 package io.mk.insurance.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
+import io.mk.insurance.feign.client.InsuranceClient;
 import io.mk.insurance.model.InsuranceDetail;
 import io.mk.insurance.model.Insurer;
 
@@ -17,21 +18,22 @@ import io.mk.insurance.model.Insurer;
 public class InsuranceService {
 
 	@Autowired
-	private RestTemplate restTemplate;
+	private InsuranceClient insuranceClient;
+	
+	@Value("${abc.insurance.app.name}")
+	String abcAppName;
+	
+	@Value("${xyz.insurance.app.name}")
+	String xyzAppName;
 
 	public InsuranceDetail getInsuranceDetail(String brand, String model) {
 		InsuranceDetail insuranceDetail = new InsuranceDetail();
 
-		// Calling microservice 1
-		String abcInsUrl = "http://desktop-ms1g9rh:8091/abcinsurance/detail/" + brand + "/" + model;
-		Insurer insResp1 = restTemplate.getForObject(abcInsUrl, Insurer.class);
-		insuranceDetail.getInsurers().add(insResp1);
+		Insurer insurerAbc = insuranceClient.getResponse(abcAppName, brand, model);
+		Insurer insurerXyz = insuranceClient.getResponse(xyzAppName, brand, model);
 
-		// Calling microservice 2
-		String xyzInsUrl = "http://desktop-ms1g9rh:8092/xyzinsurance/detail/" + brand + "/" + model;
-		Insurer insResp2 = restTemplate.getForObject(xyzInsUrl, Insurer.class);
-		insuranceDetail.getInsurers().add(insResp2);
-
+		insuranceDetail.getInsurers().add(insurerAbc);
+		insuranceDetail.getInsurers().add(insurerXyz);
 		return insuranceDetail;
 	}
 }
