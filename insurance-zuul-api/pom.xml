@@ -11,16 +11,10 @@
 	<description>Insurance zuul api</description>
 
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.4.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<groupId>io.mk</groupId>
+		<artifactId>springboot-microservices-feign-hystrix</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-
-	<properties>
-		<java.version>1.8</java.version>
-		<spring-cloud.version>Dalston.SR2</spring-cloud.version>
-	</properties>
 
 	<dependencies>
 		<dependency>
@@ -30,26 +24,15 @@
 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-zuul</artifactId>
+			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
+			 <version>${spring-cloud.starter.version}</version>
 		</dependency>
 	</dependencies>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 	<build>
 		<plugins>

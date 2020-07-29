@@ -23,7 +23,14 @@
 		<module>insurance-xyz-service</module>
 		<module>insurance-discovery-server</module>
 		<module>insurance-service</module>
+		<module>insurance-zuul-api</module>
 	</modules>
+
+	<properties>
+		<java.version>11</java.version>
+		<spring-cloud.version>Hoxton.SR6</spring-cloud.version>
+		<spring-cloud.starter.version>1.4.7.RELEASE</spring-cloud.starter.version>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -55,10 +62,5 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-	<properties>
-		<java.version>1.8</java.version>
-		<spring-cloud.version>Hoxton.SR5</spring-cloud.version>
-	</properties>
 
 </project>

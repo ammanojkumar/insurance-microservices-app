@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
  */
 @SpringBootApplication
 @EnableFeignClients
-@EnableHystrix
+//@EnableHystrix
 public class InsuranceServiceApplication {
 
 	public static void main(String[] args) {
