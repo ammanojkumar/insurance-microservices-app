@@ -32,8 +32,8 @@ public class InsuranceService {
 	public InsuranceDetail getInsuranceDetail(String brand, String model) {
 		InsuranceDetail insuranceDetail = new InsuranceDetail();
 
-		Insurer insurerAbc = insuranceClient.getResponse(abcAppName, brand, model);
-		Insurer insurerXyz = insuranceClient.getResponse(xyzAppName, brand, model);
+		Insurer insurerAbc = insuranceClient.getResponse(abcAppName, brand, model, "h1");
+		Insurer insurerXyz = insuranceClient.getResponse(xyzAppName, brand, model, "h1");
 
 		insuranceDetail.getInsurers().add(insurerAbc);
 		insuranceDetail.getInsurers().add(insurerXyz);
