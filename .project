@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>springboot-microservices-zuul-jwt</name>
+	<name>springboot-microservices-feign-hystrix</name>
 	<comment></comment>
 	<projects>
 	</projects>

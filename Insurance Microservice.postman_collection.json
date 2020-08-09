@@ -1,0 +1,66 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Insurance Microservice",
+		"_postman_id": "983086e5-9315-624a-ff63-eaa3cc861507",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "abcinsurance",
+			"request": {
+				"url": "http://localhost:8091/abcinsurance/detail/BMW/A8",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "xyzinsurance",
+			"request": {
+				"url": "http://localhost:8092/xyzinsurance/detail/BMW/A8",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "zuul abcinsurance",
+			"request": {
+				"url": "http://localhost:8040/abc-insurance-service/abcinsurance/detail/BMW/A8",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "zuul xyzinsurance",
+			"request": {
+				"url": "http://localhost:8040/abc-insurance-service/abcinsurance/detail/BMW/A8",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "User service",
+			"request": {
+				"url": "http://localhost:8080/insurances/detail/BMW/A8",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
