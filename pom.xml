@@ -19,11 +19,13 @@
 	</parent>
 
 	<modules>
-		<module>insurance-abc-service</module>
-		<module>insurance-xyz-service</module>
+		<module>insurance-app1</module>
+		<module>insurance-app2</module>
 		<module>insurance-discovery-server</module>
+		<module>insurance-jwt-service</module>
 		<module>insurance-service</module>
 		<module>insurance-zuul-api</module>
+		<module>insurance-cloud-config</module>
 	</modules>
 
 	<properties>

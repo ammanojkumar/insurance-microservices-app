@@ -10,7 +10,7 @@ import io.mk.insurance.model.Insurer;
 @FeignClient(url = "${insurance.base.url}", name = "insurance-service")
 public interface InsuranceClient {
 
-	@RequestMapping(value = "{appName}/detail/{brand}/{model}")
+	@RequestMapping(value = "{appName}/{brand}/{model}")
 	public Insurer getResponse(@PathVariable String appName, @PathVariable String brand, @PathVariable String model,
-			@RequestHeader("header2") String header1);
+			@RequestHeader("authorization") String authorization);
 }

@@ -16,8 +16,8 @@ public class InsuranceFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		String header1 = request.getHeader("header1");
-		if (header1 == null) {
+		String headerAuth = request.getHeader("authorization");
+		if (headerAuth == null) {
 			throw new RuntimeException("Header missing");
 		}
 		filterChain.doFilter(request, response);
