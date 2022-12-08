@@ -5,16 +5,16 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>io.mk</groupId>
-		<artifactId>springboot-microservices-feign-hystrix</artifactId>
+		<groupId>io.insurance.app</groupId>
+		<artifactId>insurance-microservices-app</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
 	<groupId>io.mk.cloud.config.server</groupId>
-	<artifactId>springboot-cloud-config</artifactId>
+	<artifactId>insurance-cloud-config</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>springboot-cloud-config</name>
-	<description>Springboot cloud config server</description>
+	<name>insurance-cloud-config</name>
+	<description>insurance cloud config server</description>
 
 	<dependencies>
 		<dependency>

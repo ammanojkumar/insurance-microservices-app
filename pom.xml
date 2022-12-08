@@ -4,10 +4,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>io.mk</groupId>
-	<artifactId>springboot-microservices-feign-hystrix</artifactId>
+	<groupId>io.insurance.app</groupId>
+	<artifactId>insurance-microservices-app</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>springboot-microservices-feign-hystrix</name>
+	<name>insurance-microservices-app</name>
 	<packaging>pom</packaging>
 	<description>Spring boot micro services with fiegn and hystrix</description>
 

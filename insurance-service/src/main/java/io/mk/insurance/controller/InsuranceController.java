@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.mk.insurance.model.InsuranceDetail;
 import io.mk.insurance.model.Insurer;
 import io.mk.insurance.service.InsuranceService;
+import io.mk.insurance.service.JwtService;
 
 /**
  * 
@@ -22,9 +23,17 @@ public class InsuranceController {
 	@Autowired
 	private InsuranceService insuranceService;
 
+	@Autowired
+	private JwtService jwtService;
+
 	@RequestMapping("/{brand}/{model}")
 	public InsuranceDetail getInsuranceDetail(@PathVariable String brand, @PathVariable String model,
 			@RequestHeader("authorization") String authorization) {
+
+		String resp = jwtService.checkTokenValidation(authorization);
+		if (!resp.equals("valid")) {
+			throw new RuntimeException("Invalid token");
+		}
 		InsuranceDetail insuranceDetail = new InsuranceDetail();
 
 		Insurer app1Insurance = insuranceService.getApp1Insurance(brand, model, authorization);

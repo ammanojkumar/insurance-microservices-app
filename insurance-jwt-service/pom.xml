@@ -5,8 +5,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>io.mk</groupId>
-		<artifactId>springboot-microservices-feign-hystrix</artifactId>
+		<groupId>io.insurance.app</groupId>
+		<artifactId>insurance-microservices-app</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 

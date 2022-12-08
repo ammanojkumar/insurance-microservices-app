@@ -1,27 +1,13 @@
 package io.mk.insurance.zuul.filter;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 
-import io.mk.insurance.zuul.feign.client.JwtClient;
-
 public class InsuranceZuulFilter extends ZuulFilter {
 
-	@Autowired
-	private JwtClient jwtClient;
 
 	@Override
 	public boolean shouldFilter() {
@@ -38,9 +24,9 @@ public class InsuranceZuulFilter extends ZuulFilter {
 			throw new RuntimeException("Header missing");
 		}
 
-		System.out.println("calling jwt " + headerAuth);
-		String response = jwtClient.getResponse(headerAuth);
-		System.out.println("res " + response);
+//		System.out.println("calling jwt " + headerAuth);
+//		String response = jwtClient.getResponse(headerAuth);
+//		System.out.println("res " + response);
 //		try {
 //			
 //			URI url = new URI("http://localhost:8040/insurance-jwt-service/verifytoken");
@@ -50,7 +36,7 @@ public class InsuranceZuulFilter extends ZuulFilter {
 //		} catch (URISyntaxException e) {
 //			e.printStackTrace();
 //		}
-		return new Exception("JWT");
+		return null;
 	}
 
 	@Override
