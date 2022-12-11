@@ -1,0 +1,20 @@
+server:
+  port: 8040
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: app1insurance
+        uri: http://localhost:8091/
+        predicates:
+        - Path=/app1insurance/**
+      - id: app2insurance
+        uri: http://localhost:8092/
+        predicates:
+        - Path=/app2insurance/**
+      - id: insurancejwtservice 
+        uri: http://localhost:8564/
+        predicates:
+        - Path=/jwt/**
+  application:    name: insurance-api-gateway

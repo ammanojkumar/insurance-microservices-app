@@ -19,6 +19,7 @@ import io.mk.jwt.service.InsuranceUserDetailsService;
 
 @RestController
 @CrossOrigin
+@RequestMapping("jwt")
 public class InsuranceAuthController {
 
 	@Autowired

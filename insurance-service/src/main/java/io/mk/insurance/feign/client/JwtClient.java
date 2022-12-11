@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @FeignClient(url = "${jwt.base.url}", name = "insurance-jwt-service")
 public interface JwtClient {
-	@RequestMapping(value = "verifytoken")
+	@RequestMapping(value = "jwt/verifytoken")
 	public String checkTokenValidation(@RequestHeader("authorization") String authorization);
 }
