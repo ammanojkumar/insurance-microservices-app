@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import io.jsonwebtoken.ExpiredJwtException;
+import io.mk.jwt.exception.TokenExpiryException;
 import io.mk.jwt.service.InsuranceUserDetailsService;
 
 @Component
@@ -39,8 +40,10 @@ public class InsuranceRequestFilter extends OncePerRequestFilter {
 				username = studentTokenUtil.getUsernameFromToken(jwtToken);
 			} catch (IllegalArgumentException e) {
 				System.out.println("Unable to get JWT Token");
+				throw new RuntimeException("Unable to get JWT Token");
 			} catch (ExpiredJwtException e) {
 				System.out.println("JWT Token has expired");
+				throw new TokenExpiryException("JWT Token has expired");
 			}
 
 			if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -51,6 +54,9 @@ public class InsuranceRequestFilter extends OncePerRequestFilter {
 							null, userDetails.getAuthorities());
 					ustoken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 					SecurityContextHolder.getContext().setAuthentication(ustoken);
+				} else {
+					System.out.println("JWT Token has expired");
+					throw new RuntimeException("JWT Token has expired");
 				}
 			}
 		}

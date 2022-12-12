@@ -31,6 +31,7 @@ public class InsuranceController {
 			@RequestHeader("authorization") String authorization) {
 
 		String resp = jwtService.checkTokenValidation(authorization);
+		System.out.println("resp " + resp);
 		if (!resp.equals("valid")) {
 			throw new RuntimeException("Invalid token");
 		}

@@ -2,12 +2,13 @@
 package io.mk.insurance.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
-import io.mk.insurance.feign.client.InsuranceClient;
+import io.mk.insurance.feign.client.App1InsuranceClient;
+import io.mk.insurance.feign.client.App2InsuranceClient;
 import io.mk.insurance.model.Insurer;
 
 /**
@@ -19,22 +20,25 @@ import io.mk.insurance.model.Insurer;
 public class InsuranceService {
 
 	@Autowired
-	private InsuranceClient insuranceClient;
+	private App1InsuranceClient app1InsuranceClient;
 
-	@Value("${app1.insurance.name}")
-	String app1Service;
-
-	@Value("${app2.insurance.name}")
-	String app2Service;
+	@Autowired
+	private App2InsuranceClient app2InsuranceClient;
 
 	@HystrixCommand(fallbackMethod = "getApp1InsuranceFb")
 	public Insurer getApp1Insurance(String brand, String model, String authorization) {
-		return insuranceClient.getResponse(app1Service, brand, model, authorization);
+		try {
+			return app1InsuranceClient.getResponse(brand, model, authorization);
+		} catch (Exception e) {
+			System.out.println("eeerr");
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	@HystrixCommand(fallbackMethod = "getApp2InsuranceFb")
 	public Insurer getApp2Insurance(String brand, String model, String authorization) {
-		return insuranceClient.getResponse(app2Service, brand, model, authorization);
+		return app2InsuranceClient.getResponse(brand, model, authorization);
 	}
 
 	public Insurer getApp1InsuranceFb(String brand, String model, String authorization) {
