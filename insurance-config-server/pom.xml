@@ -11,9 +11,9 @@
 	</parent>
 
 	<groupId>io.mk.cloud.config.server</groupId>
-	<artifactId>insurance-cloud-config</artifactId>
+	<artifactId>insurance-config-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>insurance-cloud-config</name>
+	<name>insurance-config-server</name>
 	<description>insurance cloud config server</description>
 
 	<dependencies>

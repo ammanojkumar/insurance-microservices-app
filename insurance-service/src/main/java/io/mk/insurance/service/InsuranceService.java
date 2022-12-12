@@ -25,10 +25,14 @@ public class InsuranceService {
 	@Autowired
 	private App2InsuranceClient app2InsuranceClient;
 
+	@Autowired
+	RestTemplate restTemplate;
+
 	@HystrixCommand(fallbackMethod = "getApp1InsuranceFb")
 	public Insurer getApp1Insurance(String brand, String model, String authorization) {
 		try {
 			return app1InsuranceClient.getResponse(brand, model, authorization);
+//			return restTemplate.getForObject("http://APP1-INSURANCE/app1insurance/BMW/A8", Insurer.class);
 		} catch (Exception e) {
 			System.out.println("eeerr");
 			e.printStackTrace();

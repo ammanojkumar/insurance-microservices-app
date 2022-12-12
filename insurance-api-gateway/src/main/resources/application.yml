@@ -9,12 +9,20 @@ spring:
         uri: http://localhost:8091/
         predicates:
         - Path=/app1insurance/**
+        
       - id: app2insurance
         uri: http://localhost:8092/
         predicates:
         - Path=/app2insurance/**
+        
+      - id: insurances
+        uri: http://localhost:8889/
+        predicates:
+        - Path=/insurances/**
+        
       - id: insurancejwtservice 
         uri: http://localhost:8564/
         predicates:
         - Path=/jwt/**
+        
   application:    name: insurance-api-gateway

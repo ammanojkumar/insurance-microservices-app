@@ -61,7 +61,7 @@
 			"response": []
 		},
 		{
-			"name": "zuul App1 insurance",
+			"name": "App1 insurance api",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -89,25 +89,24 @@
 			"response": []
 		},
 		{
-			"name": "zuul App2 insurance",
+			"name": "App2 insurance api",
 			"request": {
 				"method": "GET",
 				"header": [
 					{
 						"key": "authorization",
-						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYWEiLCJleHAiOjE2NzA0MTk3MTgsImlhdCI6MTY3MDQxOTQxOH0.1CuY0mA_-SVIywIyKVSodWwB3pEik98p4A2oBofmKPhMYu7TXphLoyO1P0EOqHCNvfLBo92y1YtbM-Cd5hnEJQ",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYWEiLCJleHAiOjE2NzA3Mzc1NzMsImlhdCI6MTY3MDczNzI3M30.gxKOyTDl9AupO-Jum1VOAFx8bPA15LzIjguOMFBrqv7QRIXyQVGfneQg4Nv0jwi4mp20QLbCHs9BynIEdftrbA",
 						"type": "default"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8040/app2-insurance/app2insurance/BMW/A8",
+					"raw": "http://localhost:8040/app2insurance/BMW/A8",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8040",
 					"path": [
-						"app2-insurance",
 						"app2insurance",
 						"BMW",
 						"A8"
@@ -123,33 +122,21 @@
 				"header": [
 					{
 						"key": "authorization",
-						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYWEiLCJleHAiOjE2NzA0MTk3MTgsImlhdCI6MTY3MDQxOTQxOH0.1CuY0mA_-SVIywIyKVSodWwB3pEik98p4A2oBofmKPhMYu7TXphLoyO1P0EOqHCNvfLBo92y1YtbM-Cd5hnEJQ",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYWEiLCJleHAiOjE2NzA4NTAxMTEsImlhdCI6MTY3MDg0OTgxMX0.ooXCX6Qe6S32lCqxk5oozG_mj2N2h7N-yKYLDtYQcaFQlqHqVtU5d4K7PCHaYrrpUFydkX11rp3q6OdIUllxaA",
 						"type": "default"
-					},
-					{
-						"key": "header1",
-						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYWEiLCJleHAiOjE2NzA0MDQ5MzIsImlhdCI6MTY3MDQwNDYzMn0.wHXAxMc6NKj18IIg16zBgX5Wz0di9v-sDlHoYQNpWlzGNg2gRmLoiehCLJ_fElG10ta8HPMS-2OVIvLcri0vJQ",
-						"type": "default",
-						"disabled": true
-					},
-					{
-						"key": "header2",
-						"value": "",
-						"type": "default",
-						"disabled": true
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/insurances/BMW/A2",
+					"raw": "http://localhost:8040/insurances/BMW/A8",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8040",
 					"path": [
 						"insurances",
 						"BMW",
-						"A2"
+						"A8"
 					]
 				}
 			},
@@ -170,12 +157,13 @@
 					"raw": "{\"username\":\"aaa\",\"password\":\"password\"}"
 				},
 				"url": {
-					"raw": "localhost:8564/authenticate",
+					"raw": "localhost:8040/jwt/authenticate",
 					"host": [
 						"localhost"
 					],
-					"port": "8564",
+					"port": "8040",
 					"path": [
+						"jwt",
 						"authenticate"
 					]
 				}
@@ -189,19 +177,18 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYWEiLCJleHAiOjE1OTY5OTg5NjAsImlhdCI6MTU5Njk5NTM2MH0.Li0iJ8q312HHw9rgw_JMIppPxBAG4J_nHu-AH2xH_iJ7zZx1txnPUbbGtl9h9Wvw524RVMkM80FuGbcTjWwobA"
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYWEiLCJleHAiOjE2NzA3Mzc1NzMsImlhdCI6MTY3MDczNzI3M30.gxKOyTDl9AupO-Jum1VOAFx8bPA15LzIjguOMFBrqv7QRIXyQVGfneQg4Nv0jwi4mp20QLbCHs9BynIEdftrbA"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/marks/2",
-					"protocol": "http",
+					"raw": "localhost:8040/jwt/verifytoken",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8040",
 					"path": [
-						"marks",
-						"2"
+						"jwt",
+						"verifytoken"
 					]
 				}
 			},

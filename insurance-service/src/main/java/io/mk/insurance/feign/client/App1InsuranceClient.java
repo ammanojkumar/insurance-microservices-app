@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import io.mk.insurance.model.Insurer;
 
-@FeignClient(url = "${insurance.base.url}", name = "app1-insurance")
+@FeignClient(name = "insurance-app1-service")
 public interface App1InsuranceClient {
 
 	@RequestMapping(value = "app1insurance/{brand}/{model}")
