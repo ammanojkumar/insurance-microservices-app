@@ -1,17 +1,26 @@
 package io.mk.app2insurance.model;
 
-/**
- * 
- * @author a.m.manojkumar@gmail.com
- * 
- */
-public class Insurer {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "Insurance")
+public class Insurance {
+
+	@Id
+	private Integer insuranceId;
 	private String companyName;
 	private String brand;
 	private String model;
-	private int idv;
-	private int insuranceAmount;
+	private Integer idv;
+	private Integer insuranceAmount;
+
+	public Integer getInsuranceId() {
+		return insuranceId;
+	}
+
+	public void setInsuranceId(Integer insuranceId) {
+		this.insuranceId = insuranceId;
+	}
 
 	public String getCompanyName() {
 		return companyName;

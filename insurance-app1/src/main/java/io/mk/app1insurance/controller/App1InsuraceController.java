@@ -1,45 +1,43 @@
 package io.mk.app1insurance.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.mk.app1insurance.model.Insurer;
+import io.mk.app1insurance.model.Insurance;
+import io.mk.app1insurance.service.App1InsuraceService;
 
-/**
- * 
- * @author a.m.manojkumar@gmail.com
- * 
- */
 @RestController
 @RequestMapping("app1insurance")
 public class App1InsuraceController {
 
-	static Map<String, Insurer> insMap = new HashMap<>();
+	static Map<String, Insurance> insMap = new HashMap<>();
 
-	@RequestMapping("/{brand}/{model}")
-	public Insurer getDetail(@PathVariable String brand, @PathVariable String model) {
-		if (brand == null || model == null) {
-			return null;
-		}
+	@Autowired
+	private App1InsuraceService app1Service;
 
-		String key = brand.toLowerCase() + model.toLowerCase();
-		if (!insMap.containsKey(key)) {
-			Insurer ins = new Insurer();
-			ins.setCompanyName("APP1");
-			ins.setBrand(brand);
-			ins.setModel(model);
-			Random ran = new Random();
-			int amt = ran.nextInt(12000);
-			amt = amt < 4000 ? 8000 - amt : amt;
-			ins.setInsuranceAmount(amt);
-			ins.setIdv(amt * 12);
-			insMap.put(key, ins);
-		}
-		return insMap.get(brand.toLowerCase() + model.toLowerCase());
+	@GetMapping("/{brand}/{model}")
+	public ResponseEntity<Insurance> getInsurance(@PathVariable String brand, @PathVariable String model) {
+		return new ResponseEntity<>(app1Service.getInsurance(brand, model), HttpStatus.OK);
+	}
+
+	@PostMapping("save")
+	public ResponseEntity<Insurance> saveInsurance(@RequestBody Insurance insurance) {
+		return new ResponseEntity<>(app1Service.saveInsurance(insurance), HttpStatus.OK);
+	}
+
+	@PostMapping("saveAll")
+	public ResponseEntity<List<Insurance>> saveAllInsurance(@RequestBody List<Insurance> insurances) {
+		return new ResponseEntity<>(app1Service.saveAllInsurance(insurances), HttpStatus.OK);
 	}
 }

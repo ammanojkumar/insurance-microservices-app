@@ -1,53 +1,43 @@
 package io.mk.app2insurance.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
-import io.mk.app2insurance.model.Insurer;
+import io.mk.app2insurance.model.Insurance;
+import io.mk.app2insurance.service.App2InsuraceService;
 
-/**
- * 
- * @author a.m.manojkumar@gmail.com
- * 
- */
 @RestController
 @RequestMapping("app2insurance")
 public class App2InsuraceController {
 
-	static Map<String, Insurer> insMap = new HashMap<>();
+	static Map<String, Insurance> insMap = new HashMap<>();
 
 	@Autowired
-	RestTemplate rt;
-	@RequestMapping("/{brand}/{model}")
-	public Insurer getDetail(@PathVariable String brand, @PathVariable String model) {
-		if (brand == null || model == null) {
-			return null;
-		}
-		if (model.equals("A1")) {
-//			return new RestTemplate().getForObject("http://localhost:8091/app1insurance/BMW/A8", Insurer.class);
-//			return rt.getForObject("http://APP1-INSURANCE/app1insurance/BMW/A8", Insurer.class);
-//			throw new RuntimeException("itttt");
-		}
-		String key = brand.toLowerCase() + model.toLowerCase();
-		if (!insMap.containsKey(key)) {
-			Insurer ins = new Insurer();
-			ins.setCompanyName("APP2");
-			ins.setBrand(brand);
-			ins.setModel(model);
-			Random ran = new Random();
-			int amt = ran.nextInt(12000);
-			amt = amt < 4000 ? 8000 - amt : amt;
-			ins.setInsuranceAmount(amt);
-			ins.setIdv(amt * 12);
-			insMap.put(key, ins);
-		}
-		return insMap.get(brand.toLowerCase() + model.toLowerCase());
+	private App2InsuraceService app1Service;
+
+	@GetMapping("/{brand}/{model}")
+	public ResponseEntity<Insurance> getInsurance(@PathVariable String brand, @PathVariable String model) {
+		return new ResponseEntity<>(app1Service.getInsurance(brand, model), HttpStatus.OK);
+	}
+
+	@PostMapping("save")
+	public ResponseEntity<Insurance> saveInsurance(@RequestBody Insurance insurance) {
+		return new ResponseEntity<>(app1Service.saveInsurance(insurance), HttpStatus.OK);
+	}
+
+	@PostMapping("saveAll")
+	public ResponseEntity<List<Insurance>> saveAllInsurance(@RequestBody List<Insurance> insurances) {
+		return new ResponseEntity<>(app1Service.saveAllInsurance(insurances), HttpStatus.OK);
 	}
 }
